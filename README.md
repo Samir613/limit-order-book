@@ -2,22 +2,22 @@
 
 A single-threaded limit order book with price-time priority matching, written in
 C++17. It supports limit, market, IOC, and FOK orders with O(1) cancellation,
-and sustains ~10M operations/second single-threaded with a median latency of
-~47ns per operation.
+and sustains 18M+ operations/second single-threaded with a median latency of
+40ns per operation.
 
 ## Results
 
-Measured on one core of an Intel Xeon @ 2.8GHz, `-O3 -march=native`, with the
-book pre-seeded to 100k resting orders and a workload of 5M operations
+Measured on a Linux x86-64 machine, `-O3 -march=native`, with the book
+pre-seeded to 100k resting orders and a workload of 5M operations
 (70% submits, 30% cancels):
 
 | Metric | Value |
 | --- | --- |
-| Throughput | 10.1M ops/sec |
-| Mean latency | 99 ns/op |
-| Median (p50) | 47 ns |
-| p99 | 453 ns |
-| p99.9 | 1.3 µs |
+| Throughput | 18.3M ops/sec |
+| Mean latency | 55 ns/op |
+| Median (p50) | 40 ns |
+| p99 | 340 ns |
+| p99.9 | 641 ns |
 
 Reproduce with `make bench && ./benchmark`. Numbers vary by machine; the
 benchmark prints its own.
